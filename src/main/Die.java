@@ -9,4 +9,5 @@ public class Die {
 	public static int roll() {
 		return random.nextInt(MAX_DIE_POSSIBILITY) + 1;
 	}
+	
 }

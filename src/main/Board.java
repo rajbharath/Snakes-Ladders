@@ -1,21 +1,33 @@
 package main;
 
-import java.util.List;
-
 public class Board {
-	int[][] positions;
-	List<Connector> connectors;
+	int[] positions;
+	private Snakes snakes;
+	private int size;
 
-	public Board(int boardSize) {
-		positions = new int[boardSize][boardSize];
+	public Board(int boardSize, Snakes snakes) {
+		calculateMaxIndex(boardSize);
+		positions = new int[getMax()];
+		this.snakes = snakes;
 	}
 
-	public boolean hasConnectorAt() {
-		return false;
+	private void calculateMaxIndex(int boardSize) {
+		size = boardSize * boardSize;
 	}
 
-	public int getDestinationFor(int position) {
-		return -1;
+	public boolean hasSnakeAt(int position) {
+		return snakes.isSnakePresent(position);
 	}
 
+	public int getTail(int position) {
+		return snakes.getTail(position);
+	}
+
+	public int getMax() {
+		return size;
+	}
+
+	public void displaySnakes() {
+		snakes.display();
+	}
 }

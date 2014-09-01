@@ -8,11 +8,22 @@ import java.util.Random;
  * */
 public class Die {
 
-	private static Random random = new Random();;
+	DieListener dieListener;
+	int face;
+
+	private Random random;
 	private static final int MAX_DIE_POSSIBILITY = 6;
 
-	public static int roll() {
-		return random.nextInt(MAX_DIE_POSSIBILITY) + 1;
+	public Die() {
+		random = new Random();
 	}
 
+	public void roll() {
+		face = random.nextInt(MAX_DIE_POSSIBILITY) + 1;
+		notifyDieListener();
+	}
+
+	public void notifyDieListener() {
+		dieListener.onDieRolled(face);
+	}
 }

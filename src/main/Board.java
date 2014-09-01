@@ -9,48 +9,33 @@ package main;
  * - finds a position has ladder
  * - finds a position has snake
  * */
-public class Board {
-	int[] positions;
-	private Snakes snakes;
-	private Ladders ladders;
-	private int size;
+public class Board implements PlayerPlacementChangedListener {
+	Cell[][] cells;
+	PlayersPlacements playersPlacements;
 
-	public Board(int boardSize, Snakes snakes, Ladders ladders) {
-		calculateMaxIndex(boardSize);
-		positions = new int[getMax()];
-		this.snakes = snakes;
-		this.ladders = ladders;
+	public void forward(Player currentPlayer, int dieFace) {
+		// find the resulting cell to place the player on it
+		Cell presentCell = playersPlacements.get(currentPlayer);
+		Cell cellToPlace = findDistantCell(presentCell, dieFace);
+		updateThePlacements(currentPlayer, cellToPlace);
 	}
 
-	private void calculateMaxIndex(int boardSize) {
-		size = boardSize * boardSize;
+	private void updateThePlacements(Player currentPlayer, Cell cellToPlace) {
+		playersPlacements.put(currentPlayer, cellToPlace);
 	}
 
-	public boolean hasSnakeAt(int position) {
-		return snakes.isSnakePresent(position);
+	private Cell findDistantCell(Cell presentCell, int distance) {
+		Cell cellAtDistance = null;
+		return cellAtDistance;
 	}
 
-	public int getTail(int position) {
-		return snakes.getTail(position);
-	}
-
-	public boolean hasLadderAt(int position) {
-		return ladders.isLadderPresent(position);
-	}
-
-	public int getTop(int position) {
-		return ladders.getTop(position);
-	}
-
-	public int getMax() {
-		return size;
-	}
-
-	public void displaySnakes() {
-		snakes.display();
-	}
-
-	public void displayLadders() {
-		ladders.display();
+	@Override
+	public void placementsUpdated(Player player) {
+		Cell destinationCell = null;
+		/*
+		 * if the cellTo place has any snake/ladder update the placement again
+		 * according to the snakes
+		 */
+		updateThePlacements(player, destinationCell);
 	}
 }

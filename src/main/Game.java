@@ -12,20 +12,17 @@ import java.util.List;
  * - deciding the game ends or not
  * - it will tell who is winner
  * */
-public class Game {
+public class Game implements DieListener {
 	List<Player> players;
-	List<IRule> rules;
 	boolean completed;
 	private Board board;
+	private Die die;
+	private Player currentPlayer;
 
 	public Game(int boardSize, int snakeCount, int ladderCount) {
 		players = new LinkedList<Player>();
-		board = new BoardBuilder().build(boardSize, snakeCount, ladderCount);
-		rules = new LinkedList<IRule>();
-		rules.add(new SnakesRule());
-		rules.add(new LadderRule());
-		board.displaySnakes();
-		board.displayLadders();
+		die = new Die();
+		// board = new BoardBuilder().build(boardSize, snakeCount, ladderCount);
 	}
 
 	public void addPlayer(Player player) {
@@ -39,11 +36,8 @@ public class Game {
 	public void start() {
 		while (!completed) {
 			for (Player player : players) {
-				player.play();
-				for (IRule rule : rules) {
-					rule.isApplicable(player, board);
-				}
-				printGameStatus();
+				currentPlayer = player;
+				player.play(die);
 				if (player.reachedEnd(board)) {
 					completed = true;
 					break;
@@ -52,10 +46,16 @@ public class Game {
 		}
 	}
 
-	public void printGameStatus() {
+	public void getStatus() {
 		for (Player player : players) {
-			System.out.println(player.getName() + "" + player.getPosition());
+			// System.out.println(player.getName() + "" + player.getPosition());
 		}
 
+	}
+
+	@Override
+	public int onDieRolled(int dieFace) {
+		board.forward(currentPlayer, dieFace);
+		return dieFace;
 	}
 }

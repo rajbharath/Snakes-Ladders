@@ -1,9 +1,7 @@
 package test;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 import main.Board;
-import main.BoardBuilder;
 
 import org.junit.After;
 import org.junit.Before;
@@ -24,9 +22,6 @@ public class BoardBuilderTest {
 
 	@Test
 	public void test() {
-		BoardBuilder builder = new BoardBuilder();
-		Board board = builder.build(10, 10, 10);
-		assertEquals(100, board.getMax());
 	}
 
 }

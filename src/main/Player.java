@@ -1,4 +1,5 @@
 package main;
+
 /*
  * Player is responsible for
  * - storing the player info such as name and position
@@ -8,30 +9,18 @@ package main;
  * */
 public class Player {
 	String name;
-	int position;
 
 	public Player(String string) {
 		name = string;
 	}
 
-	public int play() {
-		int stepsToMoveAhead = Die.roll();
-		System.out.println(name + "-"+stepsToMoveAhead);
-		moveAhead(stepsToMoveAhead);
-		return position;
-	}
-
-	private void moveAhead(int stepsToMoveAhead) {
-		position = position + stepsToMoveAhead;
-	}
-
-	public int getPosition() {
-		// TODO Auto-generated method stub
-		return position;
+	public void play(Die die) {
+		die.roll();
 	}
 
 	public boolean reachedEnd(Board board) {
-		return getPosition() >= board.getMax();
+		// return getPosition() >= board.getMax();
+		return false;
 	}
 
 	public String getName() {
@@ -39,8 +28,4 @@ public class Player {
 		return name;
 	}
 
-	public void moveTo(int tail) {
-		// TODO Auto-generated method stub
-		position=tail;
-	}
 }

@@ -1,4 +1,7 @@
-package main;
+package test;
+
+import main.Game;
+import main.Player;
 
 public class GameTest {
 	/*

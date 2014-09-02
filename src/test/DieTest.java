@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.Assert;
-import main.Die;
+import main.Dice;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -26,7 +26,7 @@ public class DieTest {
 
 	@Test
 	public void roll() {
-		// Die die = new Die();
+		// Dice die = new Dice();
 		// assertThat(
 		// die.roll(),
 		// anyOf(equalTo(1), equalTo(2), equalTo(3), equalTo(4),

@@ -7,22 +7,21 @@ import java.util.List;
  * Game class responsibilities are
  * - adding players
  * - removing players
- * - printing the game status
  * - giving turns to players
  * - deciding the game ends or not
- * - it will tell who is winner
  * */
-public class Game implements DieListener {
+public class Game implements DiceListener {
 	List<Player> players;
 	boolean completed;
 	private Board board;
-	private Die die;
+	private Dice dice;
 	private Player currentPlayer;
+	private Player winner;
 
 	public Game(int boardSize, int snakeCount, int ladderCount) {
 		players = new LinkedList<Player>();
-		die = new Die();
-		// board = new BoardBuilder().build(boardSize, snakeCount, ladderCount);
+		dice = new Dice(this);
+		board = new BoardBuilder().build(boardSize, snakeCount, ladderCount);
 	}
 
 	public void addPlayer(Player player) {
@@ -34,28 +33,24 @@ public class Game implements DieListener {
 	}
 
 	public void start() {
-		while (!completed) {
+		while (winner == null) {
 			for (Player player : players) {
 				currentPlayer = player;
-				player.play(die);
-				if (player.reachedEnd(board)) {
-					completed = true;
+				IOUtil.print("Hey! " + player.getName()
+						+ " Press Enter to roll the dice");
+				IOUtil.read();
+				player.play(dice);
+				if (board.isFinished(player)) {
+					winner = currentPlayer;
 					break;
 				}
 			}
 		}
 	}
 
-	public void getStatus() {
-		for (Player player : players) {
-			// System.out.println(player.getName() + "" + player.getPosition());
-		}
-
-	}
-
 	@Override
-	public int onDieRolled(int dieFace) {
-		board.forward(currentPlayer, dieFace);
-		return dieFace;
+	public int onDiceRolled(int diceFace) {
+		board.forward(currentPlayer, diceFace);
+		return diceFace;
 	}
 }

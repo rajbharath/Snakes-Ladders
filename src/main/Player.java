@@ -2,9 +2,7 @@ package main;
 
 /*
  * Player is responsible for
- * - storing the player info such as name and position
- * - manipulating the position according the die value
- * - moving to the position according the rule applied
+ * - storing the player info such as name
  * - playing the game by rolling the die
  * */
 public class Player {
@@ -14,17 +12,11 @@ public class Player {
 		name = string;
 	}
 
-	public void play(Die die) {
-		die.roll();
-	}
-
-	public boolean reachedEnd(Board board) {
-		// return getPosition() >= board.getMax();
-		return false;
+	public void play(Dice dice) {
+		dice.roll();
 	}
 
 	public String getName() {
-		// TODO Auto-generated method stub
 		return name;
 	}
 

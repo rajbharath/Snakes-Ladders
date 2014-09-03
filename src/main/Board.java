@@ -78,4 +78,8 @@ public class Board implements PlayerPlacementChangedListener {
 		return getSize() * getSize();
 	}
 
+	public PlayersPlacements getPlayerPlacements() {
+		return playersPlacements;
+	}
+
 }

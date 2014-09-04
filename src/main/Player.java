@@ -3,7 +3,7 @@ package main;
 /*
  * Player is responsible for
  * - storing the player info such as name
- * - playing the game by rolling the die
+ * - playing the game by rolling the dice
  * */
 public class Player {
 	String name;

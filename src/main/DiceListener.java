@@ -2,9 +2,9 @@ package main;
 
 /*
  * responsible for 
- * - reacting upon dieRolled
+ * - reacting upon diceRolled
  * */
 public interface DiceListener {
-	public int onDiceRolled(int face);
+	public void onDiceRolled(int face);
 
 }

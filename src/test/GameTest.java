@@ -14,6 +14,7 @@ public class GameTest {
 		Game game = new Game(10, 10, 5);
 		game.addPlayer(new Player("Raj"));
 		game.addPlayer(new Player("Bharath"));
+		game.addPlayer(new Player("Kannan"));
 		game.start();
 	}
 }

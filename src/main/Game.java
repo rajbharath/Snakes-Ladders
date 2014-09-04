@@ -36,12 +36,15 @@ public class Game implements DiceListener {
 		while (winner == null) {
 			for (Player player : players) {
 				currentPlayer = player;
+				IOUtil.print(board.getPlayerPlacements().toString());
 				IOUtil.print("Hey! " + player.getName()
 						+ " Press Enter to roll the dice");
 				IOUtil.read();
 				player.play(dice);
+
 				if (board.isFinished(player)) {
 					winner = currentPlayer;
+					IOUtil.println(winner.getName() + " is the winner");
 					break;
 				}
 			}
@@ -49,8 +52,7 @@ public class Game implements DiceListener {
 	}
 
 	@Override
-	public int onDiceRolled(int diceFace) {
+	public void onDiceRolled(int diceFace) {
 		board.forward(currentPlayer, diceFace);
-		return diceFace;
 	}
 }

@@ -1,7 +1,5 @@
 package main;
 
-import java.util.HashMap;
-
 /*
  * responsible for 
  * - finding the snake for a head
@@ -9,9 +7,18 @@ import java.util.HashMap;
  * 
  * */
 
-public class Snakes extends HashMap<Cell, Cell> {
+public class Snakes extends Connectors {
 
 	public boolean hasSnakeAt(Cell currentCell) {
 		return keySet().contains(currentCell);
 	}
+
+	@Override
+	public Cell decideConnectingDirection(Cell lowerPositionedCell,
+			Cell higherPositionedCell) {
+		return super
+				.putWithDirection(higherPositionedCell, lowerPositionedCell);
+
+	}
+
 }

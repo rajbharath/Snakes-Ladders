@@ -1,6 +1,7 @@
 package main;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /*
  * Responsible for 
@@ -17,8 +18,8 @@ public class PlayersPlacements extends HashMap<Player, Cell> {
 
 	@Override
 	public Cell put(Player player, Cell cell) {
-		Cell placedCell=super.put(player, cell);
-		if (!get(player).equals(cell)){
+		Cell placedCell = super.put(player, cell);
+		if (placedCell!=null && !get(player).equals(placedCell)) {
 			notifyPlayerPlacementChangedListener(player);
 			return placedCell;
 		}
@@ -34,4 +35,13 @@ public class PlayersPlacements extends HashMap<Player, Cell> {
 		return super.get(player) == null ? startCell : super.get(player);
 	}
 
+	@Override
+	public String toString() {
+		Set<Player> keys = keySet();
+		String status = "";
+		for (Player player : keys) {
+			status += player.getName() + " " + get(player).getPosition() + "\n";
+		}
+		return status;
+	}
 }

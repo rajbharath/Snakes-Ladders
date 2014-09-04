@@ -1,28 +1,21 @@
 package test;
 
-import java.util.Arrays;
-import java.util.List;
-
-import junit.framework.Assert;
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.mockito.Matchers.intThat;
+import static org.mockito.Mockito.verify;
 import main.Dice;
 import main.DiceListener;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.core.AnyOf;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import static org.mockito.Mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-
 @RunWith(MockitoJUnitRunner.class)
-public class DieTest {
+public class DiceTest {
 
 	@Mock
 	DiceListener diceListener;

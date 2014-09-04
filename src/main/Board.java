@@ -1,5 +1,7 @@
 package main;
 
+import java.util.List;
+
 /*
  * Board class is responsible for 
  * - forwarding the player
@@ -13,10 +15,13 @@ public class Board implements PlayerPlacementChangedListener {
 	Snakes snakes;
 	Ladders ladders;
 	private int size;
+	private int endPosition;
+	private List<Connectors> collectionOfConnectors;
 
 	public Board(Cell[][] cells) {
 		this.cells = cells;
 		this.size = cells.length;
+		this.endPosition = getSize() * getSize();
 		playersPlacements = new PlayersPlacements(this);
 	}
 
@@ -42,10 +47,12 @@ public class Board implements PlayerPlacementChangedListener {
 	public void placementsUpdated(Player player) {
 		Cell currentCell = playersPlacements.get(player);
 		Cell destinationCell = currentCell;
-		if (snakes.hasSnakeAt(currentCell)) {
-			destinationCell = snakes.get(currentCell);
-		} else if (ladders.hasLadderAt(currentCell)) {
-			destinationCell = ladders.get(currentCell);
+
+		for (Connectors connectors : collectionOfConnectors) {
+			if (connectors.hasConnectorAt(currentCell)) {
+				destinationCell = connectors.get(currentCell);
+				break;
+			}
 		}
 
 		updateThePlacements(player, destinationCell);
@@ -57,6 +64,8 @@ public class Board implements PlayerPlacementChangedListener {
 	}
 
 	public Cell getCellAt(int position) {
+		if (position > getFinishingPosition())
+			position = getFinishingPosition();
 		for (int row = 0; row < getSize(); row++) {
 			for (int column = 0; column < getSize(); column++) {
 				if (cells[row][column].getPosition() == position)
@@ -75,11 +84,16 @@ public class Board implements PlayerPlacementChangedListener {
 	}
 
 	private int getFinishingPosition() {
-		return getSize() * getSize();
+		return endPosition;
 	}
 
 	public PlayersPlacements getPlayerPlacements() {
 		return playersPlacements;
+	}
+
+	public void setCollectionOfConnectors(
+			List<Connectors> collectionOfConnectors) {
+		this.collectionOfConnectors = collectionOfConnectors;
 	}
 
 }

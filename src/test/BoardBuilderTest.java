@@ -1,15 +1,14 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+
 import main.Board;
+import main.BoardBuilder;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
 public class BoardBuilderTest {
 
 	@Before
@@ -21,7 +20,13 @@ public class BoardBuilderTest {
 	}
 
 	@Test
-	public void test() {
+	public void build() {
+		BoardBuilder builder = new BoardBuilder();
+
+		int boardSize = 10;
+		int snakeCount = 10;
+		int ladderCount = 10;
+		assertTrue(builder.build(boardSize, snakeCount, ladderCount) instanceof Board);
 	}
 
 }

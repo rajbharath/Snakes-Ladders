@@ -13,7 +13,7 @@ public class GameTest {
 	public static void main(String[] args) {
 		Game game = new Game(10, 10, 5);
 		game.addPlayer(new Player("Raj"));
-		game.addPlayer(new Player("Priya"));
+		game.addPlayer(new Player("Bharath"));
 		game.start();
 	}
 }

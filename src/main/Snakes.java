@@ -2,11 +2,9 @@ package main;
 
 /*
  * responsible for 
- * - finding the snake for a head
- * - getting the tail for a snake's head
+ * - deciding the direction of ladder (from head to tail)
  * 
  * */
-
 public class Snakes extends Connectors {
 
 	public boolean hasSnakeAt(Cell currentCell) {

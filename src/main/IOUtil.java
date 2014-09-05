@@ -1,7 +1,9 @@
 package main;
 
 import java.util.Scanner;
-
+/*
+ * used for standard IO
+ * */
 public class IOUtil {
 	private static Scanner scanner = new Scanner(System.in);
 

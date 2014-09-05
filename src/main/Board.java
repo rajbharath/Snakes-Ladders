@@ -5,15 +5,12 @@ import java.util.List;
 /*
  * Board class is responsible for 
  * - forwarding the player
- * - updating the placements
  * - has cells and its position mapping
  * */
 
 public class Board implements PlayerPlacementChangedListener {
 	Cell[][] cells;
 	PlayersPlacements playersPlacements;
-	Snakes snakes;
-	Ladders ladders;
 	private int size;
 	private int endPosition;
 	private List<Connectors> collectionOfConnectors;
@@ -23,14 +20,6 @@ public class Board implements PlayerPlacementChangedListener {
 		this.size = cells.length;
 		this.endPosition = getSize() * getSize();
 		playersPlacements = new PlayersPlacements(this);
-	}
-
-	public void setSnakes(Snakes snakes) {
-		this.snakes = snakes;
-	}
-
-	public void setLadders(Ladders ladders) {
-		this.ladders = ladders;
 	}
 
 	public void forward(Player currentPlayer, int diceFace) {

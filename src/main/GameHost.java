@@ -1,9 +1,7 @@
-package test;
+package main;
 
-import main.Game;
-import main.Player;
 
-public class GameTest {
+public class GameHost {
 	/*
 	 * Game Test responsibilities are
 	 * - creating new Game

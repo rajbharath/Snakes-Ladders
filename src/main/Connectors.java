@@ -1,7 +1,10 @@
 package main;
 
 import java.util.HashMap;
-
+/*
+ * responsibilities are
+ * - holding connections between two cells
+ * */
 public abstract class Connectors extends HashMap<Cell, Cell> {
 	public boolean hasConnectorAt(Cell cell) {
 		return keySet().contains(cell);

@@ -2,8 +2,7 @@ package main;
 
 /*
  * responsible for 
- * - finding the ladder for Bottom cell
- * - getting the top for a botton cell
+ * - deciding the direction of ladder (from bottom to top)
  * 
  * */
 public class Ladders extends Connectors {
